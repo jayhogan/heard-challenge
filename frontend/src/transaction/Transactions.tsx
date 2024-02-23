@@ -5,6 +5,7 @@ import { Transaction } from './models';
 import { TransactionList } from './TransactionList';
 import { CreateTransaction } from './CreateTransaction';
 import { UpdateTransaction } from './UpdateTransaction';
+import { RemoveTransaction } from './RemoveTransaction';
 import { PageHeader } from '../shared';
 
 export function Transactions() {
@@ -12,6 +13,7 @@ export function Transactions() {
   const [transactions, setTransactions] = useState([] as Transaction[]);
   const [openCreate, setOpenCreate] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openRemove, setOpenRemove] = useState(false);
   const [selectedTransactionId, setSelectedTransactionId] = useState<string | null>(null);
   const [refreshCount, setRefreshCount] = useState(0);
 
@@ -41,6 +43,11 @@ export function Transactions() {
     setOpenEdit(true);
   };
 
+  const onRemove = (transactionId: string) => {
+    setSelectedTransactionId(transactionId);
+    setOpenRemove(true);
+  }
+
   return <>
     <PageHeader>Transaction List</PageHeader>
     {!loaded && 'Loading...'}  {/* Would use a spinner or skeleton in a larger app*/}
@@ -50,6 +57,7 @@ export function Transactions() {
         <TransactionList
           data={transactions}
           onEdit={onEdit}
+          onRemove={onRemove}
         />
         <CreateTransaction
           open={openCreate}
@@ -67,7 +75,16 @@ export function Transactions() {
             dataChanged();
           }}
           onCancel={() => setOpenEdit(false)}
-          />
+        />
+        <RemoveTransaction
+          open={openRemove}
+          transactionId={selectedTransactionId}
+          onRemove={() => {
+            setOpenRemove(false);
+            dataChanged();
+          }}
+          onCancel={() => setOpenRemove(false)}
+        />
       </div>
     )}
   </>

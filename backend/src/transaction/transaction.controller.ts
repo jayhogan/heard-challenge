@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsPositive, IsInt } from 'class-validator';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete } from '@nestjs/common';
 import { Transaction, Prisma } from '@prisma/client';
 import { TransactionService } from './transaction.service';
 
@@ -47,5 +47,12 @@ export class TransactionController {
     @Body() body: TransactionDto,
   ): Promise<Transaction> {
     return this.transactionService.updateTransaction(transactionId, body);
+  }
+
+  @Delete('/:transactionId')
+  async deleteTransaction(
+    @Param('transactionId') transactionId: string,
+  ): Promise<Transaction> {
+    return this.transactionService.removeTransaction(transactionId);
   }
 }

@@ -82,9 +82,8 @@ export function UpdateTransaction({
           });
       }}
     >
-      {/* {!loaded && 'Loading...'} */}
-      {/* {loaded && <TransactionForm form={form} name='updateTransaction' transaction={transaction}/>} */}
-      <TransactionForm form={form} name='updateTransaction' transaction={transaction}/>
+      {!loaded && 'Loading...'}
+      {loaded && <TransactionForm form={form} name='updateTransaction' transaction={transaction}/>}
     </Modal>
   )
 }

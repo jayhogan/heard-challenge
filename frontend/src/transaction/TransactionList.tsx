@@ -4,10 +4,11 @@ import { Transaction } from './models';
 
 export type TransactionListParams = {
   data: Transaction[];
-  onEdit: (transactionId: string) => void
+  onEdit: (transactionId: string) => void;
+  onRemove: (transactionId: string) => void;
 };
 
-export function TransactionList({ data, onEdit }: TransactionListParams) {
+export function TransactionList({ data, onEdit, onRemove }: TransactionListParams) {
   const columns: TableProps<Transaction>['columns'] = [
     {
       title: 'Title',
@@ -35,6 +36,7 @@ export function TransactionList({ data, onEdit }: TransactionListParams) {
       render: (_, record) => (
         <Space size="middle">
           <Button type='primary' onClick={() => onEdit(record.transactionId)}>Edit</Button>
+          <Button danger onClick={() => onRemove(record.transactionId)}>Remove</Button>
         </Space>
       )
     },

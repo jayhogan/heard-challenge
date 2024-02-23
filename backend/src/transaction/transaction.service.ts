@@ -31,4 +31,10 @@ export class TransactionService {
       where: { transactionId },
     });
   }
+
+  async removeTransaction(transactionId: string): Promise<Transaction> {
+    return this.prisma.transaction.delete({
+      where: { transactionId },
+    });
+  }
 }
