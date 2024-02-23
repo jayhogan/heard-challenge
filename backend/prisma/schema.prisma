@@ -12,3 +12,14 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Transaction {
+  transactionId   String @id @map("transaction_id") @default(uuid())
+  amount          Int
+  description     String
+  fromAccount     String @map("from_account")
+  toAccount       String @map("to_account")
+  transactionDate String @map("transaction_date")
+
+  @@map("transactions")
+}
