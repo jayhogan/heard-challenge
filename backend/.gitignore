@@ -52,6 +52,7 @@ pids
 *.seed
 *.pid.lock
 *.sqlite
+*..sqlite-journal
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

@@ -1,35 +1,45 @@
-import { Table } from 'antd';
+import { Table, Space, Button } from 'antd';
 import type { TableProps } from 'antd';
 import { Transaction } from './models';
 
 export type TransactionListParams = {
   data: Transaction[];
+  onEdit: (transactionId: string) => void
 };
 
-const columns: TableProps<Transaction>['columns'] = [
-  {
-    title: 'Title',
-    dataIndex: 'transactionId',
-  },
-  {
-    title: 'Description',
-    dataIndex: 'description',
-  },
-  {
-    title: 'Amount',
-    dataIndex: 'amount',
-  },
-  {
-    title: 'From Account',
-    dataIndex: 'fromAccount',
-  },
-  {
-    title: 'To Account',
-    dataIndex: 'toAccount',
-  },
-];
+export function TransactionList({ data, onEdit }: TransactionListParams) {
+  const columns: TableProps<Transaction>['columns'] = [
+    {
+      title: 'Title',
+      dataIndex: 'transactionId',
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+    },
+    {
+      title: 'Amount',
+      dataIndex: 'amount',
+    },
+    {
+      title: 'From Account',
+      dataIndex: 'fromAccount',
+    },
+    {
+      title: 'To Account',
+      dataIndex: 'toAccount',
+    },
+    {
+      title: '',
+      key: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type='primary' onClick={() => onEdit(record.transactionId)}>Edit</Button>
+        </Space>
+      )
+    },
+  ];
 
-export function TransactionList({ data }: TransactionListParams) {
   return <Table
     columns={columns}
     dataSource={data}

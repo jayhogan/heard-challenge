@@ -19,7 +19,7 @@ model Transaction {
   description     String
   fromAccount     String @map("from_account")
   toAccount       String @map("to_account")
-  transactionDate String @map("transaction_date")
+  transactionDate String? @map("transaction_date")
 
   @@map("transactions")
 }
