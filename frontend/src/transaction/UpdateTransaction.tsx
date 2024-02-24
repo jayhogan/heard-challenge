@@ -24,7 +24,7 @@ export function UpdateTransaction({
   useEffect(() => {
     // Would use something like ReactQuery in a larger app, or create a custom hook
     const fetchTransaction = async () => {
-      if (!transactionId) return;
+      if (!transactionId || !open) return;
 
       const response = await fetch(resourceUrl, { method: 'GET' })
       if (!response.ok) {
@@ -38,7 +38,7 @@ export function UpdateTransaction({
     }
 
     fetchTransaction().catch(console.error);
-  }, [resourceUrl, transactionId]);
+  }, [resourceUrl, transactionId, open]);
   
   const updateTransaction = async (transaction: Transaction): Promise<Transaction> => {
     const response = await fetch(`/api/transaction/${transactionId}`, {
