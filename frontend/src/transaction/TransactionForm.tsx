@@ -1,5 +1,6 @@
 import { Form, FormInstance, Input, InputNumber } from 'antd';
 import { Transaction } from './models';
+import { useEffect } from 'react';
 
 export type TransactionFormParams = {
   form: FormInstance;
@@ -8,13 +9,15 @@ export type TransactionFormParams = {
 };
 
 export function TransactionForm({ form, name, transaction }: TransactionFormParams) {
-  
+  useEffect(() => {
+    form.setFieldsValue(transaction);
+  }, [form, transaction]);
+
   return (
     <Form
       form={form}
       name={name}
       layout='vertical'
-      initialValues={transaction ?? {}}
     >
       <Form.Item<Transaction>
         label='Description'

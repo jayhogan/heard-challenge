@@ -46,7 +46,7 @@ export function RemoveTransaction({
           .catch(console.error);
       }}
     >
-        Are you sure want to remove 
+        Are you sure want to remove this transaction?
     </Modal>
   )
 }
