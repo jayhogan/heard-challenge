@@ -1,5 +1,18 @@
 # heard-challenge
 
+
+# Enhancements
+- Endpoint to fetch all account balances based on the current set of transactions
+
+{
+	"account_12345": {
+		"balance": 12345
+	},
+	"account_54321": {
+		"balance": -12345
+	}
+}
+
 Here is my version of the [Heard Take Home Assessment](https://github.com/Heard-Mental-Health/heard-technical-assessment).
 
 ## Tech Stack
